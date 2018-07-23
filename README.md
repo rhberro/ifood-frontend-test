@@ -1,6 +1,6 @@
 # Spotifood
 
-[![Build Status](https://travis-ci.org/rhberro/ifood-frontend-test.svg?branch=master)](https://travis-ci.org/rhberro/ifood-frontend-test)
+[ ![Codeship Status for rhberro/ifood-frontend-test](https://app.codeship.com/projects/861206c0-7055-0136-0903-5248fdda3e37/status?branch=master)](https://app.codeship.com/projects/299009)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
 A web application used to display the preferred playlists from iFood's customers.
