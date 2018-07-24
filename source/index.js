@@ -1,9 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import Hello from './components/Hello'
+import Layout from './views/Layout'
+
+import Header from './components/Header'
 
 ReactDOM.render(
-  <Hello />,
+  <Layout>
+    <Header />
+  </Layout>,
   document.getElementById('application')
 )
