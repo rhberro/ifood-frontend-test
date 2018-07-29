@@ -3,7 +3,7 @@ export function fetchFilters () {
 }
 
 export function fetchFiltersSucceed (data) {
-  return { type: 'FETCH_FILTERS_SUCCEED', data }
+  return { type: 'FETCH_FILTERS_SUCCEED', data: data.filters }
 }
 
 export function fetchFiltersFailed () {
@@ -14,8 +14,9 @@ export function loadFilters () {
   return function (dispatch) {
     dispatch(fetchFilters())
 
-    fetch('http://www.mocky.io/v2/5a25fade2e0000213aa90776')
-      .then(response => dispatch(fetchFiltersSucceed(response)))
-      .catch(response => dispatch(fetchFiltersFailed(response)))
+    window.fetch('http://www.mocky.io/v2/5a25fade2e0000213aa90776')
+      .then(data => data.json())
+      .then(data => dispatch(fetchFiltersSucceed(data)))
+      .catch(error => dispatch(fetchFiltersFailed(error)))
   }
 }
