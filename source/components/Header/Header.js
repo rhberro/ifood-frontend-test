@@ -5,7 +5,11 @@ import './Header.styl'
 function Header () {
   return (
     <header className='header'>
-      <a className='header__logo' href='#'>Spotifood</a>
+      <div className='header__container'>
+        <a className='header__logo' href='#'>
+          Spotifood
+        </a>
+      </div>
     </header>
   )
 }
