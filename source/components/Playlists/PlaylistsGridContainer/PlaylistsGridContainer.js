@@ -1,15 +1,41 @@
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
+import { loadPlaylists } from '../../../actions/Playlists'
 
 import PlaylistsGrid from './PlaylistsGrid'
 
-import PlaylistsData from '../../../utilities/playlists.js'
-
 class PlaylistsGridContainer extends Component {
+  componentDidMount () {
+    const { loadPlaylists } = this.props
+    loadPlaylists()
+  }
+
   render () {
+    const { playlists: { loading, data } } = this.props
+
     return (
-      <PlaylistsGrid playlists={PlaylistsData} />
+      <PlaylistsGrid
+        loading={loading}
+        playlists={data} />
     )
   }
 }
 
-export default PlaylistsGridContainer
+const mapStateToProps = function (state) {
+  const { playlists } = state
+  return { playlists }
+}
+
+const mapDispatchToProps = function (dispatch) {
+  return bindActionCreators(
+    { loadPlaylists },
+    dispatch
+  )
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PlaylistsGridContainer)
