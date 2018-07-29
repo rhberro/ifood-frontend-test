@@ -7,7 +7,7 @@ import Playlists from './reducers/Playlists'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-const store = createStore(
+export default createStore(
   combineReducers(
     {
       filters: Filters,
@@ -21,5 +21,3 @@ const store = createStore(
     )
   )
 )
-
-export default store
