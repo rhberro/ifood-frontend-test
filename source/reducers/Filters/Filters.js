@@ -5,7 +5,7 @@ const initial = {
 
 export default function Filters (state = initial, action) {
   if (action.type === 'FETCH_FILTERS') {
-    return { ...initial, loading: false }
+    return { ...initial }
   }
   if (action.type === 'FETCH_FILTERS_SUCCEED') {
     return { ...initial, loading: false, data: action.data }

@@ -5,7 +5,7 @@ const initial = {
 
 export default function Playlists (state = initial, action) {
   if (action.type === 'FETCH_PLAYLISTS') {
-    return { ...initial, loading: false }
+    return { ...initial }
   }
   if (action.type === 'FETCH_PLAYLISTS_SUCCEED') {
     return { ...initial, loading: false, data: action.data }
