@@ -1,24 +1,26 @@
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
+import { loadFilters } from '../../../actions/Filters'
 
 import PlaylistsFilters from './PlaylistsFilters'
-
-import FiltersData from '../../../utilities/filters.js'
 
 class PlaylistsFiltersContainer extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-      opened: false
-    }
-
+    this.state = { opened: false }
     this.onToggle = this.onToggle.bind(this)
+  }
+
+  componentDidMount () {
+    const { loadFilters } = this.props
+    loadFilters()
   }
 
   toggleOpenedState (state) {
     const { opened } = state
-    return {
-      opened: !opened
-    }
+    return { opened: !opened }
   }
 
   onToggle () {
@@ -27,13 +29,31 @@ class PlaylistsFiltersContainer extends Component {
 
   render () {
     const { opened } = this.state
+    const { filters: { data, loading } } = this.props
+
     return (
       <PlaylistsFilters
         opened={opened}
-        filters={FiltersData}
+        loading={loading}
+        filters={data}
         onToggle={this.onToggle} />
     )
   }
 }
 
-export default PlaylistsFiltersContainer
+const mapStateToProps = function (state) {
+  const { filters } = state
+  return { filters }
+}
+
+const mapDispatchToProps = function (dispatch) {
+  return bindActionCreators(
+    { loadFilters },
+    dispatch
+  )
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PlaylistsFiltersContainer)

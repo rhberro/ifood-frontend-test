@@ -5,18 +5,20 @@ import './PlaylistsFilters.styl'
 function PlaylistsFilterOption (props) {
   const { value, name } = props
   return (
-    <option value={value}>{ name }</option>
+    <option value={value} key={value}>
+      { name }
+    </option>
   )
 }
 
 function PlaylistsFilter (props) {
-  const { name, values } = props
+  const { id, name, values } = props
 
   if (values) {
     return (
-      <div className='playlists-filter'>
-        <select className='playlists-filter__input' placeholder={name}>
-          <option selected disabled>{ name }</option>
+      <div className='playlists-filter' key={id}>
+        <select className='playlists-filter__input' placeholder={name} value=''>
+          <option value='' disabled>{ name }</option>
           { values.map(PlaylistsFilterOption) }
         </select>
       </div>
@@ -24,14 +26,30 @@ function PlaylistsFilter (props) {
   }
 
   return (
-    <div className='playlists-filter'>
+    <div className='playlists-filter' key={id}>
       <input className='playlists-filter__input' placeholder={name}/>
     </div>
   )
 }
 
 function PlaylistsFilters (props) {
-  const { filters, opened, onToggle } = props
+  const { loading, filters, opened, onToggle } = props
+
+  if (loading) {
+    return (
+      <div className='playlists-filters'>
+        <div className='playlists-filters__container'>
+          <button className='playlists-filters__button'>Carregando</button>
+        </div>
+        <div className='playlists-filters__container playlists-filters__container--mobile'>
+          <button className='playlists-filters__button playlists-filters__button--link'>
+            Carregando
+          </button>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className='playlists-filters'>
       <div className={`playlists-filters__container ${opened ? 'playlists-filters__container--opened' : ''}`}>
