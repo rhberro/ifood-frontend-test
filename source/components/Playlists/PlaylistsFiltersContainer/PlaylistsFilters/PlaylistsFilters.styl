@@ -1,0 +1,104 @@
+@require '../../../../assets/stylesheets/colors'
+@require '../../../../assets/stylesheets/components'
+
+.playlists-filters
+  width 100%
+  border-bottom-color $gray-10
+  border-bottom-style solid
+  border-bottom-width 1px
+  position fixed
+  background-color white
+
+  &__container
+    display flex
+    @extends .container,
+      .container--centered,
+      .container--padded
+
+  &__container--mobile
+    display none
+
+  &__button
+    background-color white
+    color $primary
+    border-style solid
+    border-width 1px
+    border-color $primary
+    border-radius 4px
+    height 32px
+    font-size 14px
+    font-weight 300
+    transition-duration 50ms
+    transition-property background
+    transition-timing-function ease
+    padding-left 30px
+    padding-right 30px
+
+  &__button:hover
+    background-color $primary
+    color white
+
+  &__button:active
+    background-color $primary-120
+    color white
+
+  &__button--link
+    color $gray
+    border unset
+
+  &__button--link:hover
+    background-color white
+    color $gray
+
+  &__button--link:active
+    background-color white
+    color $gray
+
+.playlists-filter
+  flex 1 1 0
+
+  &__input
+    background-color #fff
+    border 1px solid $gray-20
+    border-radius 4px
+    height 32px
+    width 100%
+    transition-duration 200ms
+    transition-property border
+    transition-timing-function ease
+    padding-left 10px
+    padding-right 10px
+    font-size 14px
+    font-weight 300
+    box-sizing border-box
+
+  &__input:hover
+    border-color $gray-50
+
+  &__input:focus
+    border-color $primary
+
+.playlists-filter:not(:last-child)
+  margin-right 15px
+
+@media (max-width: 699px)
+  .playlists-filters
+    &--opened
+      top 0
+
+    &__container
+      flex-direction column
+      display none
+
+    &__container--opened
+      display flex
+
+    &__container--mobile
+      display flex
+
+  .playlists-filter:not(:last-child)
+    margin-right 0px
+    margin-bottom 15px
+
+  .playlists-filter:last-child
+    margin-bottom unset
