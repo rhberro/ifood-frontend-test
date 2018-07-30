@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import { loadPlaylists } from '../../../actions/Playlists'
+import getVisiblePlaylists from '../../../selectors/playlistsSelectors'
 
 import PlaylistsGrid from './PlaylistsGrid'
 
@@ -12,20 +13,31 @@ class PlaylistsGridContainer extends Component {
     loadPlaylists()
   }
 
+  componentDidUpdate (nextProps) {
+    const { filters } = nextProps
+    const { filters: currentFilters, loadPlaylists } = this.props
+
+    if (JSON.stringify(filters) === JSON.stringify(currentFilters)) {
+      return
+    }
+
+    loadPlaylists(currentFilters)
+  }
+
   render () {
-    const { playlists: { loading, data } } = this.props
+    const { loading, playlists } = this.props
 
     return (
       <PlaylistsGrid
         loading={loading}
-        playlists={data} />
+        playlists={playlists} />
     )
   }
 }
 
 const mapStateToProps = function (state) {
-  const { playlists } = state
-  return { playlists }
+  const { playlists: { filters, loading } } = state
+  return { loading, filters, playlists: getVisiblePlaylists(state) }
 }
 
 const mapDispatchToProps = function (dispatch) {

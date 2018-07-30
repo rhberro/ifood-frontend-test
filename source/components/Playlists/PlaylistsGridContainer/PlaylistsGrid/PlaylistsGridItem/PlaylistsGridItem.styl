@@ -1,10 +1,18 @@
 @require '../../../../../assets/stylesheets/colors'
 
 .playlists-grid-item
+  text-decoration none
+
   &__image
     width 100%
+    border-radius 5px
 
   &__name
-    color $gray
+    color $gray-80
     font-size 14px
     font-weight 400
+    margin-top 5px
+
+.playlists-grid-item:hover
+  .playlists-grid-item__name
+    color $primary

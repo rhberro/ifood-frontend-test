@@ -7,13 +7,22 @@
   &__container
     @extends .container,
       .container--centered,
-      .container--padded
+      .container--small-padding
 
   &__grid
     display grid
     grid-template-columns 1fr 1fr 1fr 1fr
     grid-column-gap 15px
     grid-row-gap 30px
+
+  &__empty,
+  &__loading
+    color $gray
+    font-size 32px
+    font-weight 300
+    text-align center
+    margin-top 100px  
+    margin-bottom 300px 
 
 @media (min-width: 700px) and (max-width: 899px)
   .playlists-grid
