@@ -1,29 +1,44 @@
-export function fetchPlaylists () {
+import { get } from '../../utilities/Request'
+
+function fetchPlaylists () {
   return { type: 'FETCH_PLAYLISTS' }
 }
 
-export function fetchPlaylistsSucceed (response) {
+function fetchPlaylistsSucceed (response) {
   return { type: 'FETCH_PLAYLISTS_SUCCEED', data: response.playlists.items }
 }
 
-export function fetchPlaylistsFailed () {
+function fetchPlaylistsFailed () {
   return { type: 'FETCH_PLAYLISTS_FAILED' }
 }
 
-const temporaryHeaders = {
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer BQBKuFcTC7ZUOGzetwZhoUaGaWX79y0bJS4V7thIA6b_slAO9pajOUvY5rqCfZpM91aYbalySMi7DqrhNV3BQSBgbRqy7siIeL_q5opF7eFifrT6DKB4vD_QX_0LclNc8YhVw2DI30l4tGRzE0sT8-bfflWGtfRzVjtJbeLpfzy2Va1cKmSV9cJ1iTZT9_V3SkHj6lY'
-  }
+function changeSearch (search) {
+  return { type: 'CHANGE_SEARCH', search }
 }
 
-export function loadPlaylists () {
+function changeFilters (filters) {
+  return { type: 'CHANGE_FILTERS', filters }
+}
+
+export function loadPlaylists (filters) {
   return function (dispatch) {
     dispatch(fetchPlaylists())
 
-    fetch('https://api.spotify.com/v1/browse/featured-playlists', temporaryHeaders)
+    get('https://api.spotify.com/v1/browse/featured-playlists', filters)
       .then(data => data.json())
       .then(response => dispatch(fetchPlaylistsSucceed(response)))
       .catch(response => dispatch(fetchPlaylistsFailed(response)))
+  }
+}
+
+export function onChangeSearch (search) {
+  return function (dispatch) {
+    dispatch(changeSearch(search))
+  }
+}
+
+export function onChangeFilters (filters) {
+  return function (dispatch) {
+    dispatch(changeFilters(filters))
   }
 }
