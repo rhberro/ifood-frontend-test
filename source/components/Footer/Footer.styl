@@ -3,10 +3,12 @@
 
 .footer
   width 100%
-  background-color $primary
+  background-color $gray
 
   &__container
-    @extends .container, .container--centered, .container--padded
+    @extends .container,
+      .container--centered,
+      .container--small-padding
 
   &__text
     text-align center
