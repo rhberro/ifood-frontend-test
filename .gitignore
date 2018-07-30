@@ -1,2 +1,8 @@
 # node package manager.
-/node_modules/
+node_modules/
+
+# application.
+.env
+
+#yarn
+yarn-error.log

@@ -1,5 +1,7 @@
+const webpack = require('webpack')
 const path = require('path')
 
+const DotenvWebpack = require('dotenv-webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
@@ -30,7 +32,8 @@ module.exports = {
         template: path.resolve(__dirname, 'source/index.html'),
         favicon: path.resolve(__dirname, 'source/favicon.ico')
       }
-    )
+    ),
+    new DotenvWebpack()
   ],
   devtool: 'eval-cheap-module-source-map',
   devServer: {

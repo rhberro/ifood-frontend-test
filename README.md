@@ -9,8 +9,7 @@ A web application used to display the preferred playlists from iFood's customers
 
 - [**Installing**](#installing)
 - [**Getting Started**](#getting-started)
-- [**Contributing**](#contributing)
-- [**License**](#license)
+- [**Todos**](#todos)
 
 ---
 
@@ -30,16 +29,21 @@ Run node package manager install command or yarn to install the project dependen
 npm install
 ```
 
+Make a new copy of the .env.example file and fill it with your Spotify token from [this link](https://developer.spotify.com/console/get-featured-playlists).
+
+```
+cp .env.example .env
+```
+
 Start the application using the node package manager or yarn start command.
 
 ```js
 npm start
 ```
 
-## Contributing
-
-There is no way to contribute with this project, I'm denying any kind of contribution.
-
-## License
-
-The Spotifood application is open-sourced software licensed under the MIT license.
+## Todos
+  - [ ] Write tests.
+  - [ ] Use React Router to keep the user filters whenever necessary.
+  - [x] Use Redux for the application state.
+  - [ ] Add a step to authenticate to Spotify without the need of manual work.
+  - [ ] Use Debounce to prevent unnecessary updates to the state when searching.
