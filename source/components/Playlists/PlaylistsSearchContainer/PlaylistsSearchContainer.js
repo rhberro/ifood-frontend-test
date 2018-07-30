@@ -1,26 +1,57 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
+import { onChangeSearch } from '../../../actions/Playlists'
 
 import PlaylistsSearch from './PlaylistsSearch'
 
 class PlaylistsSearchContainer extends Component {
-  constructor (props) {
-    super(props)
-    this.state = { search: '' }
-    this.onChange = this.onChange.bind(this)
+  onChange = (event) => {
+    const { target: { value } } = event
+    const { onChangeSearch } = this.props
+    onChangeSearch(value)
   }
 
-  onChange (event) {
-    const { target: { value } } = event
-    const newState = { search: value }
-    this.setState(newState)
+  onClear = () => {
+    const { onChangeSearch } = this.props
+    onChangeSearch('')
   }
 
   render () {
-    const { search } = this.state
+    const { search } = this.props
+
     return (
-      <PlaylistsSearch search={search} onChange={this.onChange} />
+      <PlaylistsSearch
+        search={search}
+        onChange={this.onChange}
+        onClear={this.onClear} />
     )
   }
 }
 
-export default PlaylistsSearchContainer
+PlaylistsSearchContainer.propTypes = {
+  search: PropTypes.string
+}
+
+PlaylistsSearchContainer.defaultProps = {
+  search: ''
+}
+
+const mapStateToProps = function (state) {
+  const { playlists: { search } } = state
+  return { search }
+}
+
+const mapDispatchToProps = function (dispatch) {
+  return bindActionCreators(
+    { onChangeSearch },
+    dispatch
+  )
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PlaylistsSearchContainer)

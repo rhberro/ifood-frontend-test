@@ -5,33 +5,49 @@
   &__container
     @extends .container,
       .container--centered,
-      .container--padded
+      .container--small-padding
 
   &__title
     font-size 32px
     font-weight 300
-    margin-top 30px
-    margin-bottom 0px
     color $gray-95
-    letter-spacing 0.5px
+
+  &__input-group
+    position relative
 
   &__input
     background-color #fff
-    border 1px solid $gray-20
+    border 0px solid $gray-20
     border-radius 4px
     height 32px
     width 100%
     transition-duration 200ms
     transition-property border
     transition-timing-function ease
-    padding-left 10px
+    padding-left 40px
     padding-right 10px
     font-size 14px
     font-weight 300
     box-sizing border-box
+    background-color $gray-05
 
   &__input:hover
     border-color $gray-50
+    background-color $gray-10
 
   &__input:focus
     border-color $primary
+
+  &__icon
+    fill $gray-20
+    position absolute
+    transform translateY(50%)
+
+    &--search
+      left 10px
+
+    &--close
+      right 10px
+
+  &__icon--close:hover
+    fill $gray-50
