@@ -1,0 +1,36 @@
+@require '../../../../../assets/stylesheets/colors'
+
+.playlists-filter
+  flex 1 1 0
+
+  &__input
+    background-color #fff
+    border 1px solid $gray-20
+    border-radius 4px
+    height 32px
+    width 100%
+    transition-duration 200ms
+    transition-property border
+    transition-timing-function ease
+    padding-left 10px
+    padding-right 10px
+    font-size 14px
+    font-weight 300
+    box-sizing border-box
+
+  &__input:hover
+    border-color $gray-50
+
+  &__input:focus
+    border-color $primary
+
+.playlists-filter:not(:last-child)
+  margin-right 15px
+
+@media (max-width: 699px)
+  .playlists-filter:not(:last-child)
+    margin-right 0px
+    margin-bottom 15px
+
+  .playlists-filter:last-child
+    margin-bottom unset

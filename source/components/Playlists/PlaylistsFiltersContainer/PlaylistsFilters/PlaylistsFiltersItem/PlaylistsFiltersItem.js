@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './PlaylistsFiltersItem.styl'
+
 function renderOption (option) {
   const { value, name } = option
   return (
@@ -36,7 +38,7 @@ function renderText (item, props) {
   )
 }
 
-function PlaylistsFilterItem (props) {
+function PlaylistsFiltersItem (props) {
   const { values } = props
 
   return values
@@ -44,4 +46,4 @@ function PlaylistsFilterItem (props) {
     : renderText(props, this)
 }
 
-export default PlaylistsFilterItem
+export default PlaylistsFiltersItem

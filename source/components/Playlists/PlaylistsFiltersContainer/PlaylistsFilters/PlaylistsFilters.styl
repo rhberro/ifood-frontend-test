@@ -8,15 +8,18 @@
   border-bottom-width 1px
   position fixed
   background-color white
+  z-index 10
 
   &__container
-    display flex
     @extends .container,
       .container--centered,
-      .container--padded
+      .container--small-padding
 
   &__container--mobile
     display none
+
+  &__form
+    display flex
 
   &__button
     background-color white
@@ -43,8 +46,9 @@
     color white
 
   &__button--link
-    color $gray
     border unset
+    color $gray
+    width 100%
 
   &__button--link:hover
     background-color white
@@ -54,51 +58,19 @@
     background-color white
     color $gray
 
-.playlists-filter
-  flex 1 1 0
-
-  &__input
-    background-color #fff
-    border 1px solid $gray-20
-    border-radius 4px
-    height 32px
-    width 100%
-    transition-duration 200ms
-    transition-property border
-    transition-timing-function ease
-    padding-left 10px
-    padding-right 10px
-    font-size 14px
-    font-weight 300
-    box-sizing border-box
-
-  &__input:hover
-    border-color $gray-50
-
-  &__input:focus
-    border-color $primary
-
-.playlists-filter:not(:last-child)
-  margin-right 15px
-
 @media (max-width: 699px)
   .playlists-filters
     &--opened
       top 0
 
     &__container
-      flex-direction column
       display none
 
     &__container--opened
-      display flex
+      display block
 
     &__container--mobile
-      display flex
+      display block
 
-  .playlists-filter:not(:last-child)
-    margin-right 0px
-    margin-bottom 15px
-
-  .playlists-filter:last-child
-    margin-bottom unset
+    &__form
+      flex-direction column
