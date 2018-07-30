@@ -29,7 +29,7 @@ Run node package manager install command or yarn to install the project dependen
 npm install
 ```
 
-Make a new copy of the .env.example file and fill it with your Spotify token from [this link](https://developer.spotify.com/console/get-featured-playlists).
+Make a copy of the .env.example file and fill it with your Spotify token from [this link](https://developer.spotify.com/console/get-featured-playlists).
 
 ```
 cp .env.example .env
